@@ -57,6 +57,7 @@ public class Board {
 				System.out.print("글쓴이 : ");
 				writer = scanner.nextLine();
 				
+				
 				for(int i=0; i<index; i++) {
 					if(boardArray[i][0] == null) {
 							boardArray[i][0]= String.valueOf(index);
@@ -89,12 +90,25 @@ public class Board {
 				boardNum = "";
 				System.out.print("번호 : ");
 				boardNum = scanner.nextLine();
-				System.out.println("제목  : " + boardArray[Integer.parseInt(boardNum)-1][1]);
-				System.out.println("내용  : " + boardArray[Integer.parseInt(boardNum)-1][2]);
-				System.out.println("글쓴이 : " + boardArray[Integer.parseInt(boardNum)-1][3]);
-				int count = Integer.parseInt(boardArray[Integer.parseInt(boardNum)-1][4]) + 1;
-				boardArray[Integer.parseInt(boardNum)-1][4] = String.valueOf(count);
-				System.out.println("조회수 : " +boardArray[Integer.parseInt(boardNum)-1][4] );
+				int temp = 0;
+				
+				for(int i=0; i<index; i++) {
+					if(boardNum.equals(boardArray[i][0])) {
+						System.out.println("제목  : " + boardArray[Integer.parseInt(boardNum)-1][1]);
+						System.out.println("내용  : " + boardArray[Integer.parseInt(boardNum)-1][2]);
+						System.out.println("글쓴이 : " + boardArray[Integer.parseInt(boardNum)-1][3]);
+						int count = Integer.parseInt(boardArray[Integer.parseInt(boardNum)-1][4]) + 1;
+						boardArray[Integer.parseInt(boardNum)-1][4] = String.valueOf(count);
+						System.out.println("조회수 : " +boardArray[Integer.parseInt(boardNum)-1][4] );
+						temp++;
+						break;
+					}
+				}
+				
+				if(temp == 0) {
+					System.out.println("해당 글이 없습니다.");
+				}
+				
 				
 			}else if(input.equals("4")) {
 				int num = 0;
@@ -137,17 +151,27 @@ public class Board {
 						  }
 						}
 						break;
+					}else {
+						System.out.println("해당 글이 없습니다.");
 					}
 				}
 
 			}else if(input.equals("5")) {
 				System.out.print("번호 : ");
 				boardNum = scanner.nextLine();
-				int k = Integer.parseInt(boardNum);
+				//int k = Integer.parseInt(boardNum);
 				
-					System.out.println("what : " + Integer.parseInt(boardArray[k-1][0]));
-					replaceArray[Integer.parseInt(boardArray[k-1][0])] = null;
-					boardArray[k-1][0] = null;
+				for(int i=0; i<index; i++) {
+					if(boardNum.equals(boardArray[i][0])) {
+						replaceArray[Integer.parseInt(boardArray[i][0])] = null;
+						boardArray[i][0] = null;
+					}else {
+						System.out.println("해당 글이 없습니다.");
+					}
+				}
+				
+					//System.out.println("what : " + Integer.parseInt(boardArray[k-1][0]));
+					
 				
 				
 				System.out.println("-----------------------------------------------------------------------------");
