@@ -29,6 +29,7 @@ public class Board {
 			String writer = "";
 			
 			if(input.equals("1")) {
+				int count = 0;
 				System.out.println("-----------------------------------------------------------------------------");
 				System.out.println("\t번호\t제목\t내용\t글쓴이\t조회\t");
 				System.out.println("-----------------------------------------------------------------------------");
@@ -37,6 +38,7 @@ public class Board {
 					for(int j=0; j<5; j++) {
 						
 						boardContent += " \t " + boardArray[Integer.parseInt(replaceArray[i])][j]; 
+						count++;
 						
 					}
 					System.out.println(boardContent);
@@ -44,6 +46,9 @@ public class Board {
 				  }
 				}
 				
+				if(count == 0) {
+					System.out.println("게시된 글이 없습니다.");
+				}
 			}else if(input.equals("2")) {
 				System.out.print("제목 : ");
 				title = scanner.nextLine();
@@ -55,9 +60,7 @@ public class Board {
 				for(int i=0; i<index; i++) {
 					if(boardArray[i][0] == null) {
 							boardArray[i][0]= String.valueOf(index);
-							System.out.println("boardArray[" + i +"][0] : " + boardArray[i][0]);
 							replaceArray[Integer.parseInt(boardArray[i][0])] = String.valueOf(i);
-							System.out.println("Replace[" + boardArray[i][0] +"] = " + replaceArray[Integer.parseInt(boardArray[i][0])]);
 							boardArray[i][1]= title;
 							boardArray[i][2]= content;
 							boardArray[i][3]= writer;
@@ -166,6 +169,8 @@ public class Board {
 					System.out.println("게시판 번호 : " + boardArray[i][0]);
 				}
 				break;
+			}else {
+				System.out.println("다시 입력해주세요");
 			}
 			
 		}
