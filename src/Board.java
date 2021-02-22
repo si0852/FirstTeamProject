@@ -6,14 +6,14 @@ public class Board {
 	public static void main(String[] args) {
 		
 		String[][] boardArray = new String[100][5];
-		String[] replaceArray = new String[100];
-		String boardContent = "";
+		String[] replaceArray = new String[101];
+		String boardContent = ""; // 생성시 게시판 내용 저장할 변수
 		
 		String boardNum = ""; // input 번호
-		String updatecontent = "";
-		String input = "";
+		String updatecontent = ""; //update 번호 입력
+		String input = "";/// 목록 번호 입력
 		
-		int index = 1;
+		int index = 1; // 게시판 번호 인덱스
 		
 		
 		
@@ -66,7 +66,7 @@ public class Board {
 							boardArray[i][2]= content;
 							boardArray[i][3]= writer;
 							boardArray[i][4]= String.valueOf(0);
-							replaceArray[index] = String.valueOf(i);
+							//replaceArray[index] = String.valueOf(i);
 							index++;
 							break;
 					}
@@ -112,10 +112,12 @@ public class Board {
 				
 			}else if(input.equals("4")) {
 				int num = 0;
+				int count = 0;
 				System.out.print("번호 : ");
 				boardNum = scanner.nextLine();
 				for(int i=0; i<index; i++) {
 					if(boardNum.equals(boardArray[i][0])) {
+						count ++;
 						num = i;
 						System.out.println("기존제목  : " + boardArray[num][1]);
 						System.out.print("수정제목  : ");
@@ -152,8 +154,12 @@ public class Board {
 						}
 						break;
 					}else {
-						System.out.println("해당 글이 없습니다.");
+						
+						continue;
 					}
+				}
+				if(count == 0) {
+					System.out.println("해당 글이 없습니다.");
 				}
 
 			}else if(input.equals("5")) {
